@@ -1,11 +1,11 @@
-import { Outlet, LiveReload, Link, Links, Meta } from "@remix-run/react";
-import globalStyleUrl from "~/styles/global.css";
+import { Outlet, LiveReload, Link, Links, Meta } from '@remix-run/react';
+import globalStyleUrl from '~/styles/global.css';
 
-export const links = () => [{ rel: "stylesheet", href: globalStyleUrl }];
+export const links = () => [{ rel: 'stylesheet', href: globalStyleUrl }];
 
 export const meta = () => {
-  const description = "A cool blog built with Remix";
-  const keywords = "remix, blog, react, javascript";
+  const description = 'A cool blog built with Remix';
+  const keywords = 'remix, blog, react, javascript';
 
   return description, keywords;
 };
@@ -24,13 +24,13 @@ function Document({ children, title }) {
   return (
     <html lang="en">
       <head>
-        <title>{title ? title : "Remix Blog"}</title>
+        <title>{title ? title : 'Remix Blog'}</title>
         <Meta />
         <Links />
       </head>
       <body>
         {children}
-        {process.env.NODE_ENV === "development" ? <LiveReload /> : null}
+        {process.env.NODE_ENV === 'development' ? <LiveReload /> : null}
       </body>
     </html>
   );
@@ -40,18 +40,28 @@ function Layout({ children }) {
   return (
     <>
       <nav className="navbar">
-        <Link to={"/"} className="logo">
+        <Link to={'/'} className="logo">
           Remix
         </Link>
-
         <ul className="nav">
           <li>
-            <Link to={"/posts"}>Posts</Link>
+            <Link to={'/posts'}>Posts</Link>
           </li>
         </ul>
       </nav>
-
       <div className="container">{children}</div>
     </>
+  );
+}
+
+export function ErrorBoundary({ error }) {
+  console.log(error);
+  return (
+    <Document>
+      <Layout>
+        <h1>Error</h1>
+        <p>{error.message}</p>
+      </Layout>
+    </Document>
   );
 }

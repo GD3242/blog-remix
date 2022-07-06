@@ -1,10 +1,8 @@
-import { useParams } from '@remix-run/react'
+import { useParams } from '@remix-run/react';
 
 function Posts() {
   const params = useParams();
-  return (
-    <div> Posts {params.postId} </div>
-  )
+  return <Document> Posts {params.postId} </Document>;
 }
 
-export default Posts
+export default Posts;
